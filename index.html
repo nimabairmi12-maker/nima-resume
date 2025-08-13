@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>رزومه حرفه‌ای | نیما</title>
+  <meta name="description" content="رزومه آنلاین حرفه‌ای نیما | توسعه‌دهنده وب، برنامه‌نویس و سازنده فروشگاه‌های آنلاین">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1020;--bg-2:#0e1630;--glass:rgba(255,255,255,.06);--border:rgba(255,255,255,.12);
+      --text:#e8ecf2;--muted:#a7b0c0;--primary:#7c5cff;--primary-2:#14c3ff;--radius:22px;--blur:16px;
+      --shadow:0 12px 42px rgba(0,0,0,.35);--shadow-2:0 6px 18px rgba(0,0,0,.25);
+      --toast-bg: rgba(0,0,0,.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;scroll-behavior:smooth}
+    body{margin:0;font-family:'Vazirmatn',ui-sans-serif; color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 10% -10%, rgba(124,92,255,.25), transparent),
+        radial-gradient(800px 600px at 90% 20%, rgba(20,195,255,.2), transparent),
+        radial-gradient(700px 500px at 50% 120%, rgba(124,92,255,.2), transparent),
+        linear-gradient(180deg, var(--bg), var(--bg-2));
+      background-attachment:fixed;
+    }
+    body::before{content:"";position:fixed;inset:-20%;z-index:-1;filter:blur(60px);
+      background: radial-gradient(60% 60% at 20% 10%, rgba(124,92,255,.18), transparent),
+                  radial-gradient(55% 55% at 80% 5%, rgba(20,195,255,.14), transparent),
+                  radial-gradient(40% 40% at 50% 90%, rgba(124,92,255,.1), transparent);
+      animation:floaty 18s infinite linear alternate;
+    }
+    @keyframes floaty{to{transform:translateY(30px) translateX(-18px)}}
+
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:60;backdrop-filter:blur(var(--blur));
+      background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,0));border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+    .brand .word{font-size:18px}
+    .links{display:flex;gap:12px;margin-inline-start:auto;align-items:center}
+    .links a{text-decoration:none;color:var(--text);opacity:.85}
+    .links a:hover{opacity:1}
+
+    /* LOGO */
+    .logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;position:relative;overflow:hidden;
+      background:linear-gradient(135deg,var(--primary),var(--primary-2)); box-shadow:var(--shadow-2)}
+    .logo svg{width:26px;height:26px;color:white}
+
+    /* small util button */
+    .icon-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text);font-weight:700;cursor:pointer}
+    .icon-btn:focus{outline:2px solid rgba(124,92,255,.25);outline-offset:2px}
+    .icon-btn.small{padding:8px 10px;font-size:13px}
+
+    /* HERO */
+    header{max-width:1200px;margin:28px auto 0;padding:28px 18px 0}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}
+    .card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero-card{padding:28px;position:relative;overflow:hidden}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.06)}
+    h1{margin:14px 0 6px;font-size:clamp(26px,4vw,42px)}
+    .role{font-size:clamp(16px,2vw,22px);color:var(--muted)}
+    .typing{display:inline-block;position:relative}
+    .typing::after{content:"|";position:absolute;left:-8px;animation:blink 1s steps(1) infinite}
+    @keyframes blink{50%{opacity:0}}
+
+    .hero-actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:14px;border:1px solid var(--border);text-decoration:none;color:var(--text);font-weight:700}
+    .btn.primary{background:linear-gradient(90deg,var(--primary),var(--primary-2))}
+    .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-2)}
+
+    /* Replace avatar with professional LOGO BADGE */
+    .badge-card{padding:0;display:grid;place-items:center;min-height:320px;overflow:hidden}
+    .badge{width:180px;height:180px;border-radius:40px;display:grid;place-items:center;position:relative;overflow:hidden;
+      background:linear-gradient(135deg,var(--primary),var(--primary-2)); box-shadow:var(--shadow)}
+    .badge::after{content:"N";font-weight:900;font-size:72px;color:white;letter-spacing:2px}
+
+    main{max-width:1200px;margin:26px auto;padding:0 18px 80px;display:grid;gap:22px}
+    .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+    .section-title h2{font-size:clamp(20px,2.6vw,28px);margin:0}
+
+    /* About */
+    .about p{margin:0;line-height:1.9;color:var(--muted)}
+
+    /* Skills */
+    .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .skill{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:12px 14px;border-radius:14px}
+    .skill .bar{height:8px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin-top:8px}
+    .skill .bar>span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--primary),var(--primary-2));border-radius:99px;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+
+    /* Timeline */
+    .timeline{position:relative;padding-right:18px}
+    .timeline::before{content:"";position:absolute;right:8px;top:0;bottom:0;width:2px;background:linear-gradient(var(--primary),var(--primary-2))}
+    .item{position:relative;padding:10px 16px 14px 14px;margin-bottom:10px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.04)}
+    .item::before{content:"";position:absolute;right:-3px;top:14px;width:10px;height:10px;border-radius:50%;background:var(--primary-2);box-shadow:0 0 0 4px rgba(20,195,255,.15)}
+    .item h3{margin:.2rem 0 .2rem;font-size:18px}
+    .item .meta{font-size:13px;color:var(--muted)}
+
+    /* Projects */
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .project{position:relative;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.01));transition:transform .3s ease, box-shadow .3s ease}
+    .project:hover{transform:translateY(-6px) scale(1.01);box-shadow:var(--shadow)}
+    .project .thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border-bottom:1px solid var(--border);filter:saturate(1.05)}
+    .project .content{padding:12px 14px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.04)}
+
+    /* Contact */
+    .contact{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+    .row{display:flex;align-items:center;gap:10px}
+
+    footer{max-width:1200px;margin:0 auto;padding:30px 18px 80px;color:var(--muted);text-align:center}
+
+    .reveal{opacity:0;transform:translateY(16px);transition:.8s cubic-bezier(.2,.8,.2,1)}
+    .reveal.in{opacity:1;transform:translateY(0)}
+
+    /* toast */
+    .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;padding:10px 16px;border-radius:10px;background:var(--toast-bg);color:var(--text);font-weight:700;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;z-index:200}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+    /* modal */
+    .link-modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.5);z-index:220}
+    .link-modal.open{display:grid}
+    .link-modal .box{width:min(560px,92%);background:var(--glass);border:1px solid var(--border);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
+    .link-modal .box input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text);direction:ltr;text-align:left}
+    .link-modal .actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
+
+    @media (max-width: 900px){.hero{grid-template-columns:1fr}.contact{grid-template-columns:1fr}.projects{grid-template-columns:1fr 1fr}.skills{grid-template-columns:1fr}}
+    @media (max-width: 560px){.projects{grid-template-columns:1fr}.section-title h2{font-size:22px}}
+
+    @media print{body{background:#fff}.nav,.btn.print,.btn.top,.icon-btn{display:none}.card{box-shadow:none;background:#fff;border:1px solid #eee}.project .thumb{filter:none}}
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand" aria-label="لوگوی نیما">
+        <div class="logo" title="Nima Dev Logo">
+          <!-- Monogram N -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 18V6l12 12V6" />
+          </svg>
+        </div>
+        <span class="word">نیما</span>
+      </div>
+      <div class="links">
+        <a href="#about">درباره من</a>
+        <a href="#skills">مهارت‌ها</a>
+        <a href="#projects">نمونه‌کار</a>
+        <a href="#contact">تماس</a>
+
+        <!-- NEW: Share / Copy Link button -->
+        <button id="copyLinkBtn" class="icon-btn small" aria-label="کپی لینک رزومه" title="کپی آدرس صفحه">
+          کپی لینک
+        </button>
+        <button id="openLinkModal" class="icon-btn small" aria-label="نمایش لینک اشتراک‌گذاری" title="نمایش لینک اشتراک">
+          اشتراک
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header>
+    <div class="hero">
+      <div class="hero-card card reveal">
+        <span class="chip">در جستجوی همکاری‌های جذاب</span>
+        <h1>سلام! من <span style="background:linear-gradient(90deg,var(--primary),var(--primary-2));-webkit-background-clip:text;background-clip:text;color:transparent">نیما</span> هستم.</h1>
+        <div class="role">توسعه‌دهنده وب · برنامه‌نویس · <span class="typing" id="typeTarget">Freelancer</span></div>
+        <p class="about" style="color:var(--muted);line-height:1.9;margin-top:8px">
+          تخصص من ساخت وب‌سایت‌های مدرن، سریع و امن است؛ از <strong>فروشگاه‌های آنلاین حرفه‌ای</strong> تا صفحات رزومه و کارت‌های پروفایل. تمرکز من بر تجربه کاربری، عملکرد و سئوی فنی است.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#projects">دیدن نمونه‌کار</a>
+          <button class="btn print" onclick="window.print()">دانلود PDF</button>
+        </div>
+      </div>
+      <!-- جای تصویر: بجای آواتار، لوگو حرفه‌ای در کارت سمت راست -->
+      <div class="badge-card card reveal" aria-label="لوگوی حرفه‌ای">
+        <div class="badge" title="Nima Brand Badge"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ABOUT -->
+    <section id="about" class="card reveal" style="padding:20px">
+      <div class="section-title"><h2>درباره من</h2></div>
+      <div class="about"><p>من <strong>نیما</strong> هستم؛ توسعه‌دهنده وب و برنامه‌نویس. سایت‌های فروشگاهی، صفحات رزومه و کارت‌های پروفایل را با جدیدترین استانداردها، دسترس‌پذیری و سرعت بالا می‌سازم.</p></div>
+    </section>
+
+    <!-- (بقیه بخش‌ها بدون تغییر، همانند نسخه شما) -->
+    <!-- SKILLS -->
+    <section id="skills" class="card reveal" style="padding:20px">
+      <div class="section-title"><h2>مهارت‌ها</h2></div>
+      <div class="skills" aria-label="نوار مهارت‌ها">
+        <div class="skill"><div class="head">ساخت وب</div><div class="bar"><span data-val="95"></span></div></div>
+        <div class="skill"><div class="head">برنامه‌نویسی</div><div class="bar"><span data-val="90"></span></div></div>
+        <div class="skill"><div class="head">فروشگاه آنلاین حرفه‌ای</div><div class="bar"><span data-val="92"></span></div></div>
+        <div class="skill"><div class="head">بهینه‌سازی و سئو</div><div class="bar"><span data-val="86"></span></div></div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="card reveal" style="padding:20px">
+      <div class="section-title"><h2>تجربه کاری</h2></div>
+      <div class="timeline">
+        <div class="item">
+          <h3>طراح و توسعه‌دهنده وب (Freelance)</h3>
+          <div class="meta">۱۴۰۱ — اکنون · ریموت</div>
+          <p style="color:var(--muted)">طراحی و اجرای پروژه‌های فروشگاهی، رزومه آنلاین و کارت پروفایل برای کسب‌و‌کارها و اشخاص با تمرکز بر برندینگ و تبدیل (Conversion).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="card reveal" style="padding:20px">
+      <div class="section-title"><h2>نمونه‌کار</h2></div>
+      <div class="projects">
+        <article class="project" tabindex="0" aria-label="فروشگاه آنلاین حرفه‌ای">
+          <img class="thumb" src="https://picsum.photos/seed/ecommerce/1200/675" alt="دموی فروشگاه آنلاین"/>
+          <div class="content">
+            <h3 style="margin:.2rem 0">فروشگاه آنلاین حرفه‌ای</h3>
+            <p style="color:var(--muted);margin:.4rem 0 .6rem">سبد خرید، پرداخت امن، فیلتر پیشرفته، مدیریت موجودی و SEO فنی. سرعت بارگذاری بهینه برای موبایل.</p>
+            <div class="tags"><span class="tag">Next.js</span><span class="tag">Stripe</span><span class="tag">SSR</span></div>
+          </div>
+        </article>
+        <article class="project" tabindex="0" aria-label="رزومه آنلاین">
+          <img class="thumb" src="https://picsum.photos/seed/resume-pro/1200/675" alt="دموی رزومه آنلاین"/>
+          <div class="content">
+            <h3 style="margin:.2rem 0">رزومه آنلاین</h3>
+            <p style="color:var(--muted);margin:.4rem 0 .6rem">طراحی گلس‌مورفیسم، حالت تاریک/روشن، انیمیشن‌های اسکرول و نسخه چاپی PDF.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Animations</span></div>
+          </div>
+        </article>
+        <article class="project" tabindex="0" aria-label="کارت پروفایل">
+          <img class="thumb" src="https://picsum.photos/seed/profile-card/1200/675" alt="دموی کارت پروفایل"/>
+          <div class="content">
+            <h3 style="margin:.2rem 0">کارت پروفایل</h3>
+            <p style="color:var(--muted);margin:.4rem 0 .6rem">کارت پروفایل مینیمال با هاور سه‌بعدی، لینک شبکه‌ها و QR برای ذخیره سریع اطلاعات.</p>
+            <div class="tags"><span class="tag">CSS</span><span class="tag">Glassmorphism</span><span class="tag">Component</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card reveal" style="padding:20px">
+      <div class="section-title"><h2>تماس</h2></div>
+      <div class="contact">
+        <div class="info" style="display:grid;gap:10px">
+          <div class="row"><strong>ایمیل:</strong> <a href="mailto:nima.dev@example.com">nima.dev@example.com</a></div>
+          <div class="row"><strong>لینکدین:</strong> <a href="#">linkedin.com/in/nima</a></div>
+          <div class="row"><strong>گیت‌هاب:</strong> <a href="#">github.com/nima</a></div>
+        </div>
+        <form class="card" style="padding:14px;display:grid;gap:10px" onsubmit="event.preventDefault();alert('پیام شما ارسال شد!')">
+          <label>نام<input required placeholder="مثلاً نیما" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text)"></label>
+          <label>ایمیل<input type="email" required placeholder="you@example.com" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text)"></label>
+          <label>پیام<textarea rows="4" required placeholder="سلام..." style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text)"></textarea></label>
+          <button class="btn primary" type="submit" style="justify-content:center">ارسال پیام</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> نیما — همه حقوق محفوظ است.</footer>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite">لینک کپی شد!</div>
+
+  <!-- Link modal -->
+  <div id="linkModal" class="link-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="box" role="document">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <strong>لینک اشتراک‌گذاری رزومه</strong>
+        <button id="closeModal" class="icon-btn small" aria-label="بستن">بستن</button>
+      </div>
+      <p style="color:var(--muted);margin:8px 0 6px">شما می‌توانید این لینک را کپی کنید یا در برگهٔ جدید باز کنید:</p>
+      <input id="shareInput" type="text" readonly aria-label="آدرس لینک">
+      <div class="actions">
+        <button id="modalCopy" class="icon-btn small">کپی</button>
+        <a id="openInNew" class="icon-btn small" target="_blank" rel="noopener">باز کردن در برگه جدید</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // سال جاری
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // تایپینگ افکت
+    const words = ["Freelancer","Web Developer","Problem Solver","Shop Builder"];
+    let i=0,t=0,dir=1; const target=document.getElementById('typeTarget');
+    function type(){
+      const w = words[i]; t += dir; target.textContent = w.slice(0,t);
+      if(t===w.length+8) dir=-1; if(t===0){dir=1;i=(i+1)%words.length}
+      setTimeout(type, 80);
+    } type();
+
+    // ریویل در اسکرول + پر کردن نوار مهارت
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          if(e.target.id==='skills'){
+            e.target.querySelectorAll('.bar>span').forEach(s=>{s.style.width = s.getAttribute('data-val')+'%';});
+          }
+          obs.unobserve(e.target);
+        }
+      })
+    },{threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+    /* ---------- Copy Link & Modal logic ---------- */
+    const copyBtn = document.getElementById('copyLinkBtn');
+    const toast = document.getElementById('toast');
+    const modal = document.getElementById('linkModal');
+    const openModalBtn = document.getElementById('openLinkModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const shareInput = document.getElementById('shareInput');
+    const modalCopy = document.getElementById('modalCopy');
+    const openInNew = document.getElementById('openInNew');
+
+    function getShareUrl(){
+      // اگر بخواهید می‌توانید اینجا پارامتر سفارشی اضافه کنید، مثلاً ?ref=nima
+      return window.location.href;
+    }
+
+    async function writeToClipboard(text){
+      try{
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          await navigator.clipboard.writeText(text);
+        } else {
+          // fallback
+          const ta = document.createElement('textarea');
+          ta.value = text; document.body.appendChild(ta);
+          ta.select(); ta.setSelectionRange(0, ta.value.length);
+          document.execCommand('copy'); ta.remove();
+        }
+        showToast('لینک کپی شد!');
+      } catch(e){
+        showToast('کپی با خطا مواجه شد.');
+        console.error('copy failed', e);
+      }
+    }
+
+    function showToast(text = 'انجام شد'){
+      toast.textContent = text;
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 2200);
+    }
+
+    copyBtn.addEventListener('click', async ()=>{
+      const url = getShareUrl();
+      await writeToClipboard(url);
+    });
+
+    // modal open
+    openModalBtn.addEventListener('click', ()=>{
+      const url = getShareUrl();
+      shareInput.value = url;
+      openInNew.href = url;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      // focus for accessibility
+      modalCopy.focus();
+    });
+    closeModalBtn.addEventListener('click', ()=> {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      openModalBtn.focus();
+    });
+
+    // copy from modal
+    modalCopy.addEventListener('click', async ()=>{
+      const url = shareInput.value;
+      await writeToClipboard(url);
+    });
+
+    // close modal on ESC or click outside
+    modal.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }});
+    modal.addEventListener('click', (e)=>{ if(e.target === modal){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }});
+
+    // accessibility: make sure Enter on buttons works (some browsers)
+    [copyBtn, openModalBtn, closeModalBtn, modalCopy].forEach(btn=>{
+      btn.addEventListener('keyup', (e)=>{ if(e.key==='Enter'){ btn.click(); }});
+    });
+
+  </script>
+</body>
+</html>
+
